@@ -15,5 +15,10 @@ int main() {
     SudokuGrid sudo_grid(basic_grid);
     sudo_grid.print_grid();
 
+    for (auto &p_cell: sudo_grid._get_square(4))
+    {
+        std::cout << p_cell->get_val() << " ";
+    }
+
     return 0;
 }

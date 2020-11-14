@@ -15,6 +15,8 @@
 
 class SudokuGrid {
 public:
+    typedef std::vector<std::shared_ptr<Cell>> CellVec;
+
     SudokuGrid(PuzzleReader::BasicGrid basic_grid);
 
     void print_grid();
@@ -22,8 +24,14 @@ public:
     // Short-hand for local use
     static const int side_length = PuzzleReader::side_length;
 
+//private:
+
+    CellVec _get_row(int row_ind);
+    CellVec _get_col(int col_ind);
+    CellVec _get_square(int square_ind);
+
 private:
-    std::vector<std::shared_ptr<Cell>> _cells;
+    CellVec _cells;
 };
 
 

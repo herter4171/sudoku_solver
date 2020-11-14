@@ -56,3 +56,65 @@ void SudokuGrid::print_grid()
         }
     }
 }
+
+SudokuGrid::CellVec SudokuGrid::_get_row(int row_ind)
+{
+    int begin_ind = row_ind*side_length;
+    auto iter = _cells.begin() + begin_ind;
+
+    return CellVec(iter, iter + side_length);
+}
+
+SudokuGrid::CellVec SudokuGrid::_get_col(int col_ind)
+{
+    CellVec col;
+
+    for (int i = col_ind; i < side_length*side_length; i += side_length)
+    {
+        col.push_back(_cells[i]);
+    }
+
+    return col;
+}
+
+SudokuGrid::CellVec SudokuGrid::_get_square(int square_ind)
+{
+    int start_row = 0;
+    int sub_length = sqrt(side_length);
+
+    // Establish start row if not zero
+    if (square_ind >= sub_length)
+    {
+        start_row = 3;
+
+        if (square_ind >= sub_length*2)
+        {
+            start_row *= 2;
+        }
+    }
+
+    int start_col;
+
+    for (int i = 0; i < sub_length; i++)
+    {
+        if ((square_ind - i) % sub_length == 0)
+        {
+            start_col = sub_length*i;
+        }
+    }
+
+    CellVec square_cells;
+
+    int start_ind = start_row*side_length + start_col;
+
+    for (int i = 0; i < sub_length; i++)
+    {
+        int curr_ind = start_ind + i*side_length;
+        auto begin = _cells.begin() + curr_ind;
+        auto end = begin + sub_length;
+
+        square_cells.insert(square_cells.end(), begin, end);
+    }
+
+    return square_cells;
+}

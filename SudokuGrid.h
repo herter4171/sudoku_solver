@@ -21,14 +21,14 @@ public:
 
     void print_grid();
 
+    CellVec get_grid();
+
     // Short-hand for local use
     static const int side_length = PuzzleReader::side_length;
 
-//private:
-
-    CellVec _get_row(int row_ind);
-    CellVec _get_col(int col_ind);
-    CellVec _get_square(int square_ind);
+    CellVec get_row(int row_ind);
+    CellVec get_col(int col_ind);
+    CellVec get_square(int square_ind);
 
 private:
     CellVec _cells;

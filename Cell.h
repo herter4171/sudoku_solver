@@ -7,6 +7,12 @@
 
 #include <string>
 #include <stdexcept>
+#include <set>
+#include <algorithm>
+#include <memory>
+#include <vector>
+
+#include "get_standard.h"
 
 class Cell {
 public:
@@ -15,6 +21,12 @@ public:
     bool is_empty();
 
     int get_val();
+
+    void update_choices(std::vector<int> &sub_choices);
+
+    int get_choice_count();
+
+    void set_single_val();
 
 private:
     // Grid indices
@@ -25,6 +37,8 @@ private:
 
     // Cell value (Zero for blank)
     int _val;
+
+    std::set<int> _choices;
 };
 
 

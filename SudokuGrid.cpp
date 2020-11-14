@@ -57,7 +57,12 @@ void SudokuGrid::print_grid()
     }
 }
 
-SudokuGrid::CellVec SudokuGrid::_get_row(int row_ind)
+SudokuGrid::CellVec SudokuGrid::get_grid()
+{
+    return _cells;
+}
+
+SudokuGrid::CellVec SudokuGrid::get_row(int row_ind)
 {
     int begin_ind = row_ind*side_length;
     auto iter = _cells.begin() + begin_ind;
@@ -65,7 +70,7 @@ SudokuGrid::CellVec SudokuGrid::_get_row(int row_ind)
     return CellVec(iter, iter + side_length);
 }
 
-SudokuGrid::CellVec SudokuGrid::_get_col(int col_ind)
+SudokuGrid::CellVec SudokuGrid::get_col(int col_ind)
 {
     CellVec col;
 
@@ -77,7 +82,7 @@ SudokuGrid::CellVec SudokuGrid::_get_col(int col_ind)
     return col;
 }
 
-SudokuGrid::CellVec SudokuGrid::_get_square(int square_ind)
+SudokuGrid::CellVec SudokuGrid::get_square(int square_ind)
 {
     int start_row = 0;
     int sub_length = sqrt(side_length);

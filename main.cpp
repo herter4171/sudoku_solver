@@ -1,10 +1,11 @@
 // http://www.opensky.ca/~jdhildeb/software/sudokugen/
 #include <iostream>
 #include <string>
-
+#include <memory>
 
 #include "PuzzleReader.h"
 #include "SudokuGrid.h"
+#include "Solver.h"
 
 int main() {
     std::string inp_path = "../puzzle_dashes.csv";
@@ -12,12 +13,14 @@ int main() {
     PuzzleReader puz_rd(inp_path);
     PuzzleReader::BasicGrid basic_grid = puz_rd.get_grid();
 
-    SudokuGrid sudo_grid(basic_grid);
-    sudo_grid.print_grid();
+    std::shared_ptr<SudokuGrid> sudo_grid(new SudokuGrid((basic_grid)));
+    sudo_grid->print_grid();
 
-    for (auto &p_cell: sudo_grid._get_square(4))
+    Solver sudo_solve(sudo_grid);
+
+    while (sudo_solve.update() > 0)
     {
-        std::cout << p_cell->get_val() << " ";
+        sudo_grid->print_grid();
     }
 
     return 0;

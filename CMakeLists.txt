@@ -7,4 +7,4 @@ find_package(Boost)
 
 include_directories(${Boost_INCLUDE_DIRS})
 
-add_executable(sudoku_solver main.cpp PuzzleReader.cpp PuzzleReader.h)
+add_executable(sudoku_solver main.cpp PuzzleReader.cpp PuzzleReader.h SudokuGrid.cpp SudokuGrid.h Cell.cpp Cell.h)

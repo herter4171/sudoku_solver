@@ -31,12 +31,6 @@ PuzzleReader::BasicGrid PuzzleReader::get_grid()
         std::vector<std::string> row_vals;
 
         split(row_vals, row, is_any_of(","));
-
-        for (int j = 0; j < row_vals.size(); j++)
-        {
-            std::cout << row_vals[j] << std::endl;
-        }
-
         grid.push_back(row_vals);
     }
 

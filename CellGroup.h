@@ -5,9 +5,9 @@
 #ifndef SUDOKU_SOLVER_CELLGROUP_H
 #define SUDOKU_SOLVER_CELLGROUP_H
 
+#include <iostream>
 #include <memory>
 #include <vector>
-#include <set>
 #include <algorithm>
 
 #include "get_standard.h"
@@ -31,7 +31,7 @@ private:
 
     CellVec _cells;
 
-    std::set<int> _vals, _standard;
+    std::vector<int> _vals, _standard;
 };
 
 

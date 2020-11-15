@@ -4,7 +4,7 @@
 
 #include "get_standard.h"
 
-std::set<int> get_standard()
+std::vector<int> get_standard()
 {
     std::vector<int> standard;
 
@@ -13,5 +13,5 @@ std::set<int> get_standard()
         standard.push_back(i);
     }
 
-    return std::set<int>(standard.begin(), standard.end());
+    return standard;
 }

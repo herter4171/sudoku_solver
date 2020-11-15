@@ -7,7 +7,6 @@
 
 #include <string>
 #include <stdexcept>
-#include <set>
 #include <algorithm>
 #include <memory>
 #include <vector>
@@ -36,9 +35,9 @@ private:
     const int _empty_val = 0;
 
     // Cell value (Zero for blank)
-    int _val;
+    int _val, _max_choice_count;
 
-    std::set<int> _choices;
+    std::vector<int> _choices;
 };
 
 

@@ -18,9 +18,14 @@ int main() {
 
     Solver sudo_solve(sudo_grid);
 
+    int iter_ct = 0;
+
     while (sudo_solve.update() > 0)
     {
+        iter_ct++;
+        std::cout << "Iteration " << iter_ct << "\n\n";
         sudo_grid->print_grid();
+        std::cout << std::endl;
     }
 
     return 0;

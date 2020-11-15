@@ -19,16 +19,22 @@ void CellGroup::update_options()
 {
     _update_used_vals();
 
-    std::vector<int> unused;
+    int unused_size = _standard.size() - _vals.size();
+    std::vector<int> unused(unused_size);
 
-    std::set_difference(
+    std::sort(_vals.begin(), _vals.end());
+
+    auto it = std::set_difference(
             _standard.begin(), _standard.end(),
             _vals.begin(), _vals.end(),
             unused.begin());
 
+    unused.resize(it - unused.begin());
+
     for (auto &p_cell: _cells)
     {
-        p_cell->update_choices(unused);
+        if (p_cell->is_empty())
+            p_cell->update_choices(unused);
     }
 }
 
@@ -39,6 +45,6 @@ void CellGroup::_update_used_vals()
     for (auto &p_cell : _cells)
     {
         if (!p_cell->is_empty())
-            _vals.insert(p_cell->get_val());
+            _vals.push_back(p_cell->get_val());
     }
 }

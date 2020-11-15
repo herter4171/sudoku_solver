@@ -19,6 +19,7 @@ Cell::Cell(int row, int col, std::string init_val)
     {
         _val = _empty_val;
         _choices = get_standard();
+        _max_choice_count = _choices.size();
     }
 }
 
@@ -34,12 +35,14 @@ int Cell::get_val()
 
 void Cell::update_choices(std::vector<int> &sub_choices)
 {
-    std::set<int> new_choices;
+    std::vector<int> new_choices(_max_choice_count);
 
-    std::set_union(
+    auto it = std::set_intersection(
             sub_choices.begin(), sub_choices.end(),
             _choices.begin(), _choices.end(),
-            std::inserter(new_choices, new_choices.begin()));
+            new_choices.begin());
+
+    new_choices.resize(it - new_choices.begin());
 
     _choices = new_choices;
 }
@@ -55,5 +58,7 @@ void Cell::set_single_val()
     {
         auto iter = _choices.begin();
         _val = *iter;
+
+        _choices.clear();
     }
 }

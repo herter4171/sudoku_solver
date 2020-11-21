@@ -24,21 +24,33 @@ int Solver::update()
 {
     int num_changed = 0;
 
+    update_options();
+
+    for (auto &p_cell : _the_grid->get_grid())
+    {
+        if (p_cell->get_choice_count() > 1)
+        {
+            // TODO: Fix logic!
+            //p_cell->check_neighbors();
+        }
+
+        if (p_cell->get_choice_count() == 1)
+        {
+            p_cell->set_single_val();
+            num_changed++;
+            update_options();
+        }
+    }
+
+    return num_changed;
+}
+
+void Solver::update_options()
+{
     for (int i = 0; i < side_length; i++)
     {
         _rows[i].update_options();
         _cols[i].update_options();
         _squares[i].update_options();
     }
-
-    for (auto &p_cell : _the_grid->get_grid())
-    {
-        if (p_cell->get_choice_count() == 1)
-        {
-            p_cell->set_single_val();
-            num_changed++;
-        }
-    }
-
-    return num_changed;
 }

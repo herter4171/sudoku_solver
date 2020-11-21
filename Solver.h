@@ -26,6 +26,8 @@ public:
 private:
     void _set_geometry();
 
+    void update_options();
+
     std::shared_ptr<SudokuGrid> _the_grid;
 
     std::vector<CellGroup> _rows, _cols, _squares;

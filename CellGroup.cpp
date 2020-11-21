@@ -34,7 +34,7 @@ void CellGroup::update_options()
     for (auto &p_cell: _cells)
     {
         if (p_cell->is_empty())
-            p_cell->update_choices(unused);
+            p_cell->update_choices(unused, _vals);
     }
 }
 

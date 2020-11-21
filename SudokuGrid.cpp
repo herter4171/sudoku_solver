@@ -34,7 +34,13 @@ void SudokuGrid::print_grid()
         }
         else
         {
-            std::cout << val << " ";
+            if (p_cell->is_new)
+            {
+                std::cout << "\033[1;31m";
+                //p_cell->is_new = false;
+            }
+
+            std::cout << val << "\033[0m ";
         }
 
         ind++;
@@ -119,6 +125,12 @@ SudokuGrid::CellVec SudokuGrid::get_square(int square_ind)
         auto end = begin + sub_length;
 
         square_cells.insert(square_cells.end(), begin, end);
+    }
+
+    // Assign square cells to each cell
+    for (auto &curr_cell : square_cells)
+    {
+        curr_cell->set_square_cells(square_cells);
     }
 
     return square_cells;
